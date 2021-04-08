@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<head>
+  <title>a</title>
+</head>
+<body>
+<input type="button" value="単語生成" onclick="tanngoseisei()">
+<input type="button" value="+" onclick="pluskaisuu()">
+<input type="button" value="-" onclick="minuskaisuu()">
+<p id="onnsetsusuu">
+<p id="tanngo">
+<script>
+
+var c = [];
+var shiin = [];
+var boin = [];
+var cl = c.length;
+var shiinl = shiin.length;
+var boinl = boin.length;
+var r = "";
+var kaisuu = 1;
+var hokan = [];
+document.getElementById("onnsetsusuu").textContent = "音節数:" + kaisuu;
+
+function tanngoseisei(){
+
+c = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","r","s","u","v","w","y","z"];
+shiin = ["b","c","d","f","g","h","j","k","l","m","n","p","r","s","t","v","w","z"];
+shiin2 = ["b","c","d","f","g","h","j","k","l","m","n","p","r","s","t","v","w","y","z"];
+boin = ["a","i","u","e","o","a:","i:","u:","e:","o:"];
+shuuon = ["n","m","l","d","f","","","","","","","",""];
+cl = c.length;
+shiinl = shiin.length;
+boinl = boin.length;
+shuuonl = shuuon.length;
+r = "";
+hokan = "";
+
+r += c[Math.floor(Math.random()*cl)];
+
+if(boin.includes(r)){
+  r += shuuon[Math.floor(Math.random()*shuuonl)];
+  hokan += r;
+}
+
+if(shiin2.includes(r)){
+  r += boin[Math.floor(Math.random()*boinl)];
+  r += shuuon[Math.floor(Math.random()*shuuonl)];
+  hokan += r;
+}
+
+
+if(kaisuu >= 2){
+  for(var i=0; i<(kaisuu-1); i++){
+    r = "";
+    r += c[Math.floor(Math.random()*cl)];
+
+    if(boin.includes(r)){
+      r += shuuon[Math.floor(Math.random()*shuuonl)];
+      hokan += r;
+    }
+
+    if(shiin2.includes(r)){
+      r += boin[Math.floor(Math.random()*boinl)];
+      r += shuuon[Math.floor(Math.random()*shuuonl)];
+      hokan += r;
+    }
+  }
+}
+console.log(hokan);
+document.getElementById("tanngo").textContent = hokan;
+
+}
+
+
+function pluskaisuu(){
+  kaisuu += 1;
+  document.getElementById("onnsetsusuu").textContent = "音節数:" + kaisuu;
+}
+
+
+function minuskaisuu(){
+  if (kaisuu >= 2){
+    kaisuu -= 1;
+    document.getElementById("onnsetsusuu").textContent = "音節数:" + kaisuu;
+  }
+}
+</script>
+</body>
