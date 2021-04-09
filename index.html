@@ -68,12 +68,14 @@
 </form>
 <input type="button" id="tangobu" value="単語生成" onclick="tanngoseisei()">
 <input type="button" id="pubu" value="+" onclick="pluskaisuu()">
-<input type="button" id="mibu"value="-" onclick="minuskaisuu()">
+<input type="button" id="mibu" value="-" onclick="minuskaisuu()">
+<input type="button" id="tourokubu" value="登録" onclick="touroku()">
 <p id="onnsetsusuu"></p>
 <p id="a"></p>
 <p id="a1"></p>
 <p id="a2"></p>
 <p id="tanngo"></p>
+<p id="tangotouroku"></p>
 <script>
 
 var c = [];
@@ -90,6 +92,7 @@ var shiinoutput1 = ["b","c","d","f","g","h","j","k","l","m","n","p","q","r","s",
 var shiinoutput = ["b","c","d","f","g","h","j","k","l","m","n","p","q","r","s","t","v","w","x","y","z"];
 var shuuonoutput = ["n","m","l","ng","p","t","k","","","",];
 var y = "y";
+var touroku = "";
 document.getElementById("onnsetsusuu").textContent = "音節数:" + kaisuu;
 document.getElementById("a").innerHTML = ("母音:" + boinoutput);
 document.getElementById("a1").innerHTML = ("子音:" + shiinoutput);
@@ -183,6 +186,12 @@ function minuskaisuu(){
     kaisuu -= 1;
     document.getElementById("onnsetsusuu").textContent = "音節数:" + kaisuu;
   }
+}
+
+function touroku(){
+  document.getElementById("tourokubu").textContent = hokan;
+  tourokutango = hokan;
+  console.log(tourokutango);
 }
 </script>
 </body>
