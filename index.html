@@ -1,13 +1,79 @@
 <!DOCTYPE html>
 <head>
-  <title>a</title>
+<title>a</title>
+<style>
+
+#boinsoushin{
+  width: 300px;
+  height: 30px;
+}
+
+#bu1{
+  width: 100px;
+  height: 30px;
+}
+
+#shiinsoushin{
+  width: 300px;
+  height: 30px;
+}
+
+#bu2{
+  width: 100px;
+  height: 30px;
+}
+
+#shuuonsoushin{
+  width: 300px;
+  height: 30px;
+}
+
+#bu3{
+  width: 100px;
+  height: 30px;
+}
+
+#tangobu{
+  width: 80px;
+  height: 30px;
+}
+
+#pubu{
+  background: pink;
+  width: 30px;
+  height: 30px;
+}
+
+#mibu{
+  background: skyblue;
+  width: 30px;
+  height: 30px;
+}
+
+
+</style>
 </head>
 <body>
-<input type="button" value="単語生成" onclick="tanngoseisei()">
-<input type="button" value="+" onclick="pluskaisuu()">
-<input type="button" value="-" onclick="minuskaisuu()">
-<p id="onnsetsusuu">
-<p id="tanngo">
+<form id="form1" action="#">
+<input type="text" id="boinsoushin" value="a,i,u,e,o">
+<input type="button" id="bu1" onclick="boinsettei()" value="更新(母音)">
+</form>
+<form id="form2" action="#">
+<input type="text" id="shiinsoushin" value="b,c,d,f,g,h,j,k,l,m,n,p,q,r,s,t,v,w,x,y,z,">
+<input type="button" id="bu2" onclick="shiinsettei()" value="更新(子音)">
+</form>
+<form id="form3" action="#">
+<input type="text" id="shuuonsoushin" value="n,m,l,ng,p,t,k,,,,">
+<input type="button" id="bu3" onclick="shuuonsettei()" value="更新(終子音)">
+</form>
+<input type="button" id="tangobu" value="単語生成" onclick="tanngoseisei()">
+<input type="button" id="pubu" value="+" onclick="pluskaisuu()">
+<input type="button" id="mibu"value="-" onclick="minuskaisuu()">
+<p id="onnsetsusuu"></p>
+<p id="a"></p>
+<p id="a1"></p>
+<p id="a2"></p>
+<p id="tanngo"></p>
 <script>
 
 var c = [];
@@ -19,15 +85,50 @@ var boinl = boin.length;
 var r = "";
 var kaisuu = 1;
 var hokan = [];
+var boinoutput = ["a","i","u","e","o"];
+var shiinoutput1 = ["b","c","d","f","g","h","j","k","l","m","n","p","q","r","s","t","v","w","x","z"];
+var shiinoutput = ["b","c","d","f","g","h","j","k","l","m","n","p","q","r","s","t","v","w","x","y","z"];
+var shuuonoutput = ["n","m","l","ng","p","t","k","","","",];
+var y = "y";
 document.getElementById("onnsetsusuu").textContent = "音節数:" + kaisuu;
+document.getElementById("a").innerHTML = ("母音:" + boinoutput);
+document.getElementById("a1").innerHTML = ("子音:" + shiinoutput);
+document.getElementById("a2").innerHTML = ("終音:" + shuuonoutput);
+
+function boinsettei(){
+  const textbox = document.getElementById("boinsoushin");
+  const a = textbox.value;
+  boinoutput = a.split(",");
+  document.getElementById("a").innerHTML = ("母音:" + boinoutput);
+}
+
+function shiinsettei(){
+  const textbox1 = document.getElementById("shiinsoushin");
+  const a1 = textbox1.value;
+  shiinoutput = a1.split(",");
+  document.getElementById("a1").innerHTML = ("子音:" + shiinoutput);
+  if (y.includes(shiinoutput1)){
+    shiinoutput1 = shiinoutput-"y";
+  }
+  else{
+    shiinoutput1 = shiinoutput;
+  }
+}
+
+function shuuonsettei(){
+  const textbox2 = document.getElementById("shuuonsoushin");
+  const a2 = textbox2.value;
+  shuuonoutput = a2.split(",");
+  document.getElementById("a2").innerHTML = ("終音:" + shuuonoutput);
+}
 
 function tanngoseisei(){
 
-c = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","r","s","u","v","w","y","z"];
-shiin = ["b","c","d","f","g","h","j","k","l","m","n","p","r","s","t","v","w","z"];
-shiin2 = ["b","c","d","f","g","h","j","k","l","m","n","p","r","s","t","v","w","y","z"];
-boin = ["a","i","u","e","o","a:","i:","u:","e:","o:"];
-shuuon = ["n","m","l","d","f","","","","","","","",""];
+c = shiinoutput.concat(boinoutput);
+shiin = shiinoutput1;
+shiin2 = shiinoutput;
+boin = boinoutput;
+shuuon = shuuonoutput;
 cl = c.length;
 shiinl = shiin.length;
 boinl = boin.length;
@@ -66,7 +167,6 @@ if(kaisuu >= 2){
     }
   }
 }
-console.log(hokan);
 document.getElementById("tanngo").textContent = hokan;
 
 }
